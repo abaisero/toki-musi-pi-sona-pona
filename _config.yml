@@ -1,0 +1,25 @@
+url: "https://abaisero.github.io"
+baseurl: "/toki-musi-pi-sona-pona"
+title: toki musi pi sona pona
+
+description: >-
+  mi kama sona e toki pona, la toki musi li pona, la mi sitelen e toki musi.
+author: jan Pasi
+
+defaults:
+  - scope:
+      path: ""
+      type: fables
+    values:
+      layout: fable
+
+collections:
+  fables:
+    output: true
+    permalink: /toki-musi/:slug/
+    order:
+      - the-tortoise-and-the-hare.md
+      - the-scorpion-and-the-frog.md
+      - the-goose-that-laid-the-golden-eggs.md
+      - the-boy-who-cried-wolf.md
+      - the-lion-and-the-mouse.md
