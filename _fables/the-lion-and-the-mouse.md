@@ -6,20 +6,20 @@ sona_pona:
     - ma en tenpo pona, la ale li ken pona.
 ---
 
-soweli suli li lon, li lape. <br>
-poka pi soweli suli, la soweli lili li lon, li tawa wawa. <br>
+soweli suli li lon, li lape.
+poka pi soweli suli, la soweli lili li lon, li tawa wawa.
 
-soweli lili li lukin ala, li pakala e lape pi soweli suli. <br>
-soweli suli li pilin ike, li wile moli e soweli lili. <br>
-soweli lili li anpa, li toki e ni: "soweli suli o, mi pakala. mi wile ala moli." <br>
-soweli suli li pilin pona, li moli ala e soweli lili. <br>
+soweli lili li lukin ala, li pakala e lape pi soweli suli.
+soweli suli li pilin ike, li wile moli e soweli lili.
+soweli lili li anpa, li toki e ni: "soweli suli o, mi pakala. mi wile ala moli."
+soweli suli li pilin pona, li moli ala e soweli lili.
 
-tenpo li tawa. <br>
+tenpo li tawa.
 
-soweli suli li lon ma suli kasi. <br>
-ilo alasa li lon ma suli kasi. <br>
-soweli suli li tawa supa e ilo alasa, la soweli suli li ken ala tawa. <br>
-soweli suli li kalama wawa, li toki e ni: "mi wile tawa! soweli pona li lon ala lon?" <br>
-soweli lili li kute e kalama, li kama lon. <br>
-soweli lili li pakala e ilo alasa, la soweli suli li ken tawa. <br>
-soweli lili en soweli suli li tawa li pona. <br>
+soweli suli li lon ma suli kasi.
+ilo alasa li lon ma suli kasi.
+soweli suli li tawa supa e ilo alasa, la soweli suli li ken ala tawa.
+soweli suli li kalama wawa, li toki e ni: "mi wile tawa! soweli pona li lon ala lon?"
+soweli lili li kute e kalama, li kama lon.
+soweli lili li pakala e ilo alasa, la soweli suli li ken tawa.
+soweli lili en soweli suli li tawa li pona.

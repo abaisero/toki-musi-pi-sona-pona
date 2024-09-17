@@ -1,0 +1,27 @@
+.sitelen-pona {
+  font-family: nansi-nanpa;
+}
+
+[sitelen-pona] {
+  .sitelen-pona-able {
+    font-family: nansi-nanpa;
+
+    %headings {
+      font-family: nansi-nanpa;
+    }
+  }
+}
+
+.no-sitelen-pona {
+  font-family: var(--bs-body-font-family)
+}
+
+/* necessary due to sitele as icon */
+.navbar-icon {
+  font-size: 1.5rem;
+  position: absolute;
+}
+
+.navbar-text {
+  margin-left: 2rem;
+}

@@ -15,12 +15,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sketchy/bootstrap.min.css" rel="stylesheet">
     <link href="{% link assets/css/main.scss %}" rel="stylesheet" />
 
+    <!-- avoids flashing issue when preferred theme is different from the default theme -->
+    <script>
+      function getStoredSitelen() {
+        return localStorage.getItem('sitelen') || false
+      }
+
+      function setStoredSitelen(sitelen) {
+        if (sitelen) {
+          localStorage.setItem('sitelen', true);
+        }
+        else {
+          localStorage.removeItem('sitelen');
+        }
+      }
+
+      function setDocumentSitelen(sitelen) {
+        if (sitelen) {
+          document.documentElement.setAttribute('sitelen-pona', true);
+        }
+        else {
+          document.documentElement.removeAttribute('sitelen-pona');
+        }
+      }
+
+      setDocumentSitelen(getStoredSitelen());
+    </script>
+
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+    <script defer src="{% link /assets/js/sitelen-toggler.js %}"></script>
   </head>
   <body>
     {% include navigation.html %}
     
     <div class="container">
+      {% include sitelen-toggler.html %}
+
       {{ content }}
 
       <footer class="fixed-bottom">
