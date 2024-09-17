@@ -15,7 +15,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sketchy/bootstrap.min.css" rel="stylesheet">
     <link href="/toki-musi-pi-sona-pona/assets/css/main.css" rel="stylesheet" />
 
+    <!-- avoids flashing issue when preferred theme is different from the default theme -->
+    <script>
+      function getStoredSitelen() {
+        return localStorage.getItem('sitelen') || false
+      }
+
+      function setStoredSitelen(sitelen) {
+        if (sitelen) {
+          localStorage.setItem('sitelen', true);
+        }
+        else {
+          localStorage.removeItem('sitelen');
+        }
+      }
+
+      function setDocumentSitelen(sitelen) {
+        if (sitelen) {
+          document.documentElement.setAttribute('sitelen-pona', true);
+        }
+        else {
+          document.documentElement.removeAttribute('sitelen-pona');
+        }
+      }
+
+      setDocumentSitelen(getStoredSitelen());
+    </script>
+
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+    <script defer src="/toki-musi-pi-sona-pona/assets/js/sitelen-toggler.js"></script>
   </head>
   <body>
     <!-- Responsive navbar-->
@@ -23,7 +51,7 @@
   <div class="container">
     <a class="navbar-brand" href="/toki-musi-pi-sona-pona/">
       <span class="navbar-icon sitelen-pona">toki+pona</span>
-      <span class="navbar-text">toki musi pi sona pona</span>
+      <span class="navbar-text sitelen-pona-able">toki musi pi sona pona</span>
     </a>
     
   </div>
@@ -31,28 +59,41 @@
 
     
     <div class="container">
-      <h1>jan lili li kalama e soweli ike pi lon ala</h1>
+      <div class="form-check form-switch form-check-reverse float-end">
+  <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
+  <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+</div>
+<script>
+  const checkbox = document.getElementById("sitelenToggler");
+  checkbox.checked = getStoredSitelen();
+</script>
 
-<!-- <h2>toki musi li lon</h2> -->
 
-<p>jan lili li lon. <br /></p>
+      
 
-<p>jan lili li wile musi. <br />
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!” <br />
-kulupu li kute li tawa wawa. <br />
-soweli ike li lon ala. <br />
-jan lili li musi wawa. <br /></p>
+<div class="sitelen-pona-able">
 
-<p>jan lili li wile musi. <br />
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!” <br />
-kulupu li kute li tawa wawa. <br />
-soweli ike li lon ala. <br />
-jan lili li musi wawa. <br /></p>
+<h1>jan lili li kalama e soweli ike pi lon ala</h1>
 
-<p>soweli ike li lon. <br />
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!” <br />
-kulupu li kute taso li tawa ala. <br />
-soweli ike li moku e jan lili. <br /></p>
+<article class="fable">
+<p>jan lili li lon.</p>
+
+<p>jan lili li wile musi.
+jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
+kulupu li kute li tawa wawa.
+soweli ike li lon ala.
+jan lili li musi wawa.</p>
+
+<p>jan lili li wile musi.
+jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
+kulupu li kute li tawa wawa.
+soweli ike li lon ala.
+jan lili li musi wawa.</p>
+
+<p>soweli ike li lon.
+jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
+kulupu li kute taso li tawa ala.
+soweli ike li moku e jan lili.</p>
 
 
 <h2>sona pona li lon</h2>
@@ -63,6 +104,10 @@ soweli ike li moku e jan lili. <br /></p>
 
 </ul>
 
+</article>
+
+
+</div>
 
 
       <footer class="fixed-bottom">

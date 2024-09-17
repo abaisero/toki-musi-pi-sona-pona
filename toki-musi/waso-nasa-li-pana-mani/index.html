@@ -15,7 +15,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sketchy/bootstrap.min.css" rel="stylesheet">
     <link href="/toki-musi-pi-sona-pona/assets/css/main.css" rel="stylesheet" />
 
+    <!-- avoids flashing issue when preferred theme is different from the default theme -->
+    <script>
+      function getStoredSitelen() {
+        return localStorage.getItem('sitelen') || false
+      }
+
+      function setStoredSitelen(sitelen) {
+        if (sitelen) {
+          localStorage.setItem('sitelen', true);
+        }
+        else {
+          localStorage.removeItem('sitelen');
+        }
+      }
+
+      function setDocumentSitelen(sitelen) {
+        if (sitelen) {
+          document.documentElement.setAttribute('sitelen-pona', true);
+        }
+        else {
+          document.documentElement.removeAttribute('sitelen-pona');
+        }
+      }
+
+      setDocumentSitelen(getStoredSitelen());
+    </script>
+
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+    <script defer src="/toki-musi-pi-sona-pona/assets/js/sitelen-toggler.js"></script>
   </head>
   <body>
     <!-- Responsive navbar-->
@@ -23,7 +51,7 @@
   <div class="container">
     <a class="navbar-brand" href="/toki-musi-pi-sona-pona/">
       <span class="navbar-icon sitelen-pona">toki+pona</span>
-      <span class="navbar-text">toki musi pi sona pona</span>
+      <span class="navbar-text sitelen-pona-able">toki musi pi sona pona</span>
     </a>
     
   </div>
@@ -31,19 +59,32 @@
 
     
     <div class="container">
-      <h1>waso nasa li pana mani</h1>
+      <div class="form-check form-switch form-check-reverse float-end">
+  <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
+  <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+</div>
+<script>
+  const checkbox = document.getElementById("sitelenToggler");
+  checkbox.checked = getStoredSitelen();
+</script>
 
-<!-- <h2>toki musi li lon</h2> -->
 
-<p>waso nasa li lon, li pana mani. <br />
-jan li jo e waso nasa, la jan li jo e mani. <br /></p>
+      
 
-<p>jan li wile e mani mute, li toki e ni: “waso nasa li pana mani, la mani li lon insa pi waso nasa.” <br />
-jan li moli e waso nasa, li kama alasa e mani mute insa pi waso nasa. <br />
-mani li lon ala insa pi waso nasa. <br /></p>
+<div class="sitelen-pona-able">
 
-<p>tenpo pini, la jan li jo e waso nasa e mani. <br />
-tenpo ni, la jan li jo ala e waso nasa e mani. <br /></p>
+<h1>waso nasa li pana mani</h1>
+
+<article class="fable">
+<p>waso nasa li lon, li pana mani.
+jan li jo e waso nasa, la jan li jo e mani.</p>
+
+<p>jan li wile e mani mute, li toki e ni: “waso nasa li pana mani, la mani li lon insa pi waso nasa.”
+jan li moli e waso nasa, li kama alasa e mani mute insa pi waso nasa.
+mani li lon ala insa pi waso nasa.</p>
+
+<p>tenpo pini, la jan li jo e waso nasa e mani.
+tenpo ni, la jan li jo ala e waso nasa e mani.</p>
 
 
 <h2>sona pona li lon</h2>
@@ -54,6 +95,10 @@ tenpo ni, la jan li jo ala e waso nasa e mani. <br /></p>
 
 </ul>
 
+</article>
+
+
+</div>
 
 
       <footer class="fixed-bottom">

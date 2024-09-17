@@ -15,7 +15,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/sketchy/bootstrap.min.css" rel="stylesheet">
     <link href="/toki-musi-pi-sona-pona/assets/css/main.css" rel="stylesheet" />
 
+    <!-- avoids flashing issue when preferred theme is different from the default theme -->
+    <script>
+      function getStoredSitelen() {
+        return localStorage.getItem('sitelen') || false
+      }
+
+      function setStoredSitelen(sitelen) {
+        if (sitelen) {
+          localStorage.setItem('sitelen', true);
+        }
+        else {
+          localStorage.removeItem('sitelen');
+        }
+      }
+
+      function setDocumentSitelen(sitelen) {
+        if (sitelen) {
+          document.documentElement.setAttribute('sitelen-pona', true);
+        }
+        else {
+          document.documentElement.removeAttribute('sitelen-pona');
+        }
+      }
+
+      setDocumentSitelen(getStoredSitelen());
+    </script>
+
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+    <script defer src="/toki-musi-pi-sona-pona/assets/js/sitelen-toggler.js"></script>
   </head>
   <body>
     <!-- Responsive navbar-->
@@ -23,7 +51,7 @@
   <div class="container">
     <a class="navbar-brand" href="/toki-musi-pi-sona-pona/">
       <span class="navbar-icon sitelen-pona">toki+pona</span>
-      <span class="navbar-text">toki musi pi sona pona</span>
+      <span class="navbar-text sitelen-pona-able">toki musi pi sona pona</span>
     </a>
     
   </div>
@@ -31,27 +59,40 @@
 
     
     <div class="container">
-      <h1>soweli suli en soweli lili</h1>
+      <div class="form-check form-switch form-check-reverse float-end">
+  <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
+  <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+</div>
+<script>
+  const checkbox = document.getElementById("sitelenToggler");
+  checkbox.checked = getStoredSitelen();
+</script>
 
-<!-- <h2>toki musi li lon</h2> -->
 
-<p>soweli suli li lon, li lape. <br />
-poka pi soweli suli, la soweli lili li lon, li tawa wawa. <br /></p>
+      
 
-<p>soweli lili li lukin ala, li pakala e lape pi soweli suli. <br />
-soweli suli li pilin ike, li wile moli e soweli lili. <br />
-soweli lili li anpa, li toki e ni: “soweli suli o, mi pakala. mi wile ala moli.” <br />
-soweli suli li pilin pona, li moli ala e soweli lili. <br /></p>
+<div class="sitelen-pona-able">
 
-<p>tenpo li tawa. <br /></p>
+<h1>soweli suli en soweli lili</h1>
 
-<p>soweli suli li lon ma suli kasi. <br />
-ilo alasa li lon ma suli kasi. <br />
-soweli suli li tawa supa e ilo alasa, la soweli suli li ken ala tawa. <br />
-soweli suli li kalama wawa, li toki e ni: “mi wile tawa! soweli pona li lon ala lon?” <br />
-soweli lili li kute e kalama, li kama lon. <br />
-soweli lili li pakala e ilo alasa, la soweli suli li ken tawa. <br />
-soweli lili en soweli suli li tawa li pona. <br /></p>
+<article class="fable">
+<p>soweli suli li lon, li lape.
+poka pi soweli suli, la soweli lili li lon, li tawa wawa.</p>
+
+<p>soweli lili li lukin ala, li pakala e lape pi soweli suli.
+soweli suli li pilin ike, li wile moli e soweli lili.
+soweli lili li anpa, li toki e ni: “soweli suli o, mi pakala. mi wile ala moli.”
+soweli suli li pilin pona, li moli ala e soweli lili.</p>
+
+<p>tenpo li tawa.</p>
+
+<p>soweli suli li lon ma suli kasi.
+ilo alasa li lon ma suli kasi.
+soweli suli li tawa supa e ilo alasa, la soweli suli li ken ala tawa.
+soweli suli li kalama wawa, li toki e ni: “mi wile tawa! soweli pona li lon ala lon?”
+soweli lili li kute e kalama, li kama lon.
+soweli lili li pakala e ilo alasa, la soweli suli li ken tawa.
+soweli lili en soweli suli li tawa li pona.</p>
 
 
 <h2>sona pona li lon</h2>
@@ -64,6 +105,10 @@ soweli lili en soweli suli li tawa li pona. <br /></p>
 
 </ul>
 
+</article>
+
+
+</div>
 
 
       <footer class="fixed-bottom">
