@@ -1,4 +1,4 @@
-.PHONY: clean doctor serve build
+.PHONY: clean doctor serve serve-production build
 
 clean:
 	bundle exec jekyll clean
@@ -7,7 +7,10 @@ doctor:
 	bundle exec jekyll doctor
 
 serve:
-	bundle exec jekyll serve --livereload --baseurl=
+	JEKYLL_ENV=development bundle exec jekyll serve --livereload --baseurl=
+
+serve-production:
+	JEKYLL_ENV=production bundle exec jekyll serve --livereload --baseurl=
 
 build:
-	bundle exec jekyll build
+	JEKYLL_ENV=production bundle exec jekyll build
