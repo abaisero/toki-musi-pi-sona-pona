@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SamplePlugin
+module TestPagePlugin
   # This plugin removes the test page from the site when the environment is not development.
   class TestPageGenerator < Jekyll::Generator
     safe true
