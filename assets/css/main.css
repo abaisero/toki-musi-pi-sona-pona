@@ -18,6 +18,7 @@ article.fable p {
 /* nansi-nanpa, https://github.com/ETBCOR/nasin-nanpa */
 @font-face {
   font-family: nansi-nanpa;
+  /* version 4 stops handling most punctuation */
   src: url(/toki-musi-pi-sona-pona/assets/fonts/nasin-nanpa-3.1.0.otf) format("opentype");
 }
 .sitelen-pona {
