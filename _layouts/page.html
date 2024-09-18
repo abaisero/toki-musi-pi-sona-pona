@@ -10,7 +10,11 @@ layout: default
 
 <div class="{{ divclass }}">
 
-<h1>{{ page.title }}</h1>
+<h1>
+  {%-sitelenblock-%}
+  {{ page.title }}
+  {%-endsitelenblock-%}
+</h1>
 
 {{ content }}
 

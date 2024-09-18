@@ -3,13 +3,20 @@ layout: page
 ---
 
 <article class="fable">
-{{ content }}
 
-<h2>sona pona li lon</h2>
+{% sitelenblock %}
+{{ content }}
+{% endsitelenblock %}
+
+<h2>{% sitelen sona & pona li lon %}</h2>
 
 <ul>
 {% for wisdom in page.sona_pona %}
-<li>{{ wisdom }}</li>
+<li>
+  {%-sitelenblock-%}
+    {{ wisdom }}
+  {%-endsitelenblock-%}
+</li>
 {% endfor %}
 </ul>
 

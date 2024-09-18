@@ -8,8 +8,7 @@
 /* nansi-nanpa, https://github.com/ETBCOR/nasin-nanpa */
 @font-face {
   font-family: nansi-nanpa;
-  /* version 4 stops handling most punctuation */
-  src: url({% link assets/fonts/nasin-nanpa-3.1.0.otf %}) format("opentype");
+  src: url({% link assets/fonts/nasin-nanpa-4.0.1.otf %}) format("opentype");
 }
 
 @import "sitelen";

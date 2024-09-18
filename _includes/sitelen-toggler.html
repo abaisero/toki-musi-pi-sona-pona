@@ -1,8 +1,45 @@
-<div class="form-check form-switch form-check-reverse float-end">
-  <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
-  <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+<div class="float-end">
+
+  o luka e wile sina:
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenLigaturesToggler">sitelen pona linja</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesToggler">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenLigaturesExtraToggler">sitelen pona lili</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesExtraToggler">
+  </div>
+
+  <script>
+    function initializeTogglers(tp_togglers) {
+      const checkboxes = {
+        sitelen: document.getElementById("sitelenToggler"),
+        ligatures: document.getElementById("sitelenLigaturesToggler"),
+        ligatures_extra: document.getElementById("sitelenLigaturesExtraToggler"),
+      }
+
+      checkboxes.sitelen.checked = tp_togglers.sitelen;
+      checkboxes.ligatures.checked = tp_togglers.ligatures;
+      checkboxes.ligatures_extra.checked = tp_togglers.ligatures_extra;
+
+      checkboxes.ligatures.disabled = false;
+      checkboxes.ligatures_extra.disabled = false;
+
+      if (!tp_togglers.sitelen) {
+        checkboxes.ligatures.disabled = true;
+        checkboxes.ligatures_extra.disabled = true;
+      }
+
+      if (!tp_togglers.ligatures) {
+        checkboxes.ligatures_extra.disabled = true;
+      }
+    }
+
+    initializeTogglers(getStoredTPTogglers());
+  </script>
+
 </div>
-<script>
-  const checkbox = document.getElementById("sitelenToggler");
-  checkbox.checked = getStoredSitelen();
-</script>

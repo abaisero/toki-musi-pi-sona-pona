@@ -2,8 +2,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="{% link index.md %}">
-      <span class="navbar-icon sitelen-pona">toki+pona</span>
-      <span class="navbar-text sitelen-pona-able">toki musi pi sona pona</span>
+      <span class="navbar-icon sitelen-pona">toki & pona</span>
+      <span class="navbar-text sitelen-pona-able">
+        {%-sitelenblock-%} toki musi pi (sona & pona) {%-endsitelenblock-%}
+      </span>
     </a>
     {% if jekyll.environment == "development" %}
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

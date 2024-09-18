@@ -2,7 +2,7 @@
   font-family: nansi-nanpa;
 }
 
-[sitelen-pona] {
+html[tp-script|="sitelen"] {
   .sitelen-pona-able {
     font-family: nansi-nanpa;
 
@@ -12,6 +12,7 @@
   }
 }
 
+/* restore font in no-sitelen-pona tags */
 .no-sitelen-pona {
   font-family: var(--bs-body-font-family)
 }
@@ -24,4 +25,53 @@
 
 .navbar-text {
   margin-left: 2rem;
+}
+
+/* sitelen ligatures */
+
+html[tp-script]:not([tp-script="latin"]) {
+  .latin-comma,
+  .latin-qmark,
+  .latin-quote {
+    display: none;
+  }
+
+  h1, a, u {
+    text-decoration: none;
+  }
+}
+
+html[tp-script="latin"] {
+  .sitelen-joiner,
+  .sitelen-glyph-reverse-start,
+  .sitelen-glyph-reverse-end,
+  .sitelen-glyph-start,
+  .sitelen-glyph-end {
+    display: none;
+  }
+}
+
+html[tp-script="sitelen"] {
+  .sitelen-joiner,
+  .sitelen-glyph-reverse-start,
+  .sitelen-glyph-reverse-end,
+  .sitelen-glyph-start,
+  .sitelen-glyph-end {
+    display: none;
+  }
+}
+
+html[tp-script="sitelen-ligatures-simple"] {
+  .sitelen-joiner {
+    display: none;
+  }
+}
+
+html[tp-script="sitelen-ligatures-complex"] {
+  .sitelen-pi-joiner,
+  .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-start,
+  .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-end
+  {
+    display: none;
+  }
 }

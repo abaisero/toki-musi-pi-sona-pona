@@ -17,29 +17,48 @@
 
     <!-- avoids flashing issue when preferred theme is different from the default theme -->
     <script>
-      function getStoredSitelen() {
-        return localStorage.getItem('sitelen') || false
+      function getStoredTPToggler(name) {
+        const value = localStorage.getItem('tp-toggler-' + name) || "false";
+        return value === "true";
       }
 
-      function setStoredSitelen(sitelen) {
-        if (sitelen) {
-          localStorage.setItem('sitelen', true);
-        }
-        else {
-          localStorage.removeItem('sitelen');
-        }
+      function setStoredTPToggler(name, value) {
+        localStorage.setItem('tp-toggler-' + name, value);
       }
 
-      function setDocumentSitelen(sitelen) {
-        if (sitelen) {
-          document.documentElement.setAttribute('sitelen-pona', true);
-        }
-        else {
-          document.documentElement.removeAttribute('sitelen-pona');
+      function getStoredTPTogglers() {
+        return {
+          sitelen: getStoredTPToggler('sitelen'),
+          ligatures: getStoredTPToggler('ligatures'),
+          ligatures_extra: getStoredTPToggler('ligatures-extra'),
         }
       }
 
-      setDocumentSitelen(getStoredSitelen());
+      function convertTPTogglersToTPScript(tp_togglers) {
+        if (!tp_togglers.sitelen) {
+          return "latin";
+        }
+
+        if (!tp_togglers.ligatures) {
+          return "sitelen";
+        }
+
+        if (!tp_togglers.ligatures_extra) {
+          return "sitelen-ligatures-simple";
+        }
+
+        return "sitelen-ligatures-complex";
+      }
+
+      function getStoredTPScript() {
+        return convertTPTogglersToTPScript(getStoredTPTogglers());
+      }
+
+      function setDocumentTPScript(tp_script) {
+        document.documentElement.setAttribute('tp-script', tp_script);
+      }
+
+      setDocumentTPScript(getStoredTPScript());
     </script>
 
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
