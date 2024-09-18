@@ -7,9 +7,6 @@ h1 {
   text-decoration: underline;
 }
 
-/* h1:not(.nohash):before { */
-/*   content: "# "; */
-/* } */
 article.fable p {
   white-space: pre-line;
 }
@@ -18,21 +15,21 @@ article.fable p {
 /* nansi-nanpa, https://github.com/ETBCOR/nasin-nanpa */
 @font-face {
   font-family: nansi-nanpa;
-  /* version 4 stops handling most punctuation */
-  src: url(/toki-musi-pi-sona-pona/assets/fonts/nasin-nanpa-3.1.0.otf) format("opentype");
+  src: url(/toki-musi-pi-sona-pona/assets/fonts/nasin-nanpa-4.0.1.otf) format("opentype");
 }
 .sitelen-pona {
   font-family: nansi-nanpa;
 }
 
-[sitelen-pona] .sitelen-pona-able {
+html[tp-script|=sitelen] .sitelen-pona-able {
   font-family: nansi-nanpa;
 }
-[sitelen-pona] .sitelen-pona-able h1, [sitelen-pona] .sitelen-pona-able h2, [sitelen-pona] .sitelen-pona-able h3,
-[sitelen-pona] .sitelen-pona-able h4, [sitelen-pona] .sitelen-pona-able h5, [sitelen-pona] .sitelen-pona-able h6 {
+html[tp-script|=sitelen] .sitelen-pona-able h1, html[tp-script|=sitelen] .sitelen-pona-able h2, html[tp-script|=sitelen] .sitelen-pona-able h3,
+html[tp-script|=sitelen] .sitelen-pona-able h4, html[tp-script|=sitelen] .sitelen-pona-able h5, html[tp-script|=sitelen] .sitelen-pona-able h6 {
   font-family: nansi-nanpa;
 }
 
+/* restore font in no-sitelen-pona tags */
 .no-sitelen-pona {
   font-family: var(--bs-body-font-family);
 }
@@ -45,6 +42,36 @@ article.fable p {
 
 .navbar-text {
   margin-left: 2rem;
+}
+
+/* sitelen ligatures */
+html[tp-script]:not([tp-script=latin]) .latin-comma,
+html[tp-script]:not([tp-script=latin]) .latin-qmark,
+html[tp-script]:not([tp-script=latin]) .latin-quote {
+  display: none;
+}
+html[tp-script]:not([tp-script=latin]) h1, html[tp-script]:not([tp-script=latin]) a, html[tp-script]:not([tp-script=latin]) u {
+  text-decoration: none;
+}
+
+html[tp-script=latin] .sitelen-joiner,
+html[tp-script=latin] .sitelen-glyph-reverse-start,
+html[tp-script=latin] .sitelen-glyph-reverse-end,
+html[tp-script=latin] .sitelen-glyph-start,
+html[tp-script=latin] .sitelen-glyph-end {
+  display: none;
+}
+
+html[tp-script=sitelen] .sitelen-joiner,
+html[tp-script=sitelen] .sitelen-glyph-reverse-start,
+html[tp-script=sitelen] .sitelen-glyph-reverse-end,
+html[tp-script=sitelen] .sitelen-glyph-start,
+html[tp-script=sitelen] .sitelen-glyph-end {
+  display: none;
+}
+
+html[tp-script=sitelen-ligatures-simple] .sitelen-joiner {
+  display: none;
 }
 
 /*# sourceMappingURL=main.css.map */

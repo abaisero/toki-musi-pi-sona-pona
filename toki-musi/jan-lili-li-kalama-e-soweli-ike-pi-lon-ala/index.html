@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="mi kama sona e toki pona, la toki musi li pona, la mi sitelen e toki musi." />
     <meta name="author" content="jan Pasi" />
-    <title>jan lili li kalama e soweli ike pi lon ala - toki musi pi sona pona</title>
+    <title>jan & lili li kalama e soweli & ike pi (lon ala) - toki musi pi sona pona</title>
 
     <!-- Favicon-->
     <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
@@ -17,29 +17,48 @@
 
     <!-- avoids flashing issue when preferred theme is different from the default theme -->
     <script>
-      function getStoredSitelen() {
-        return localStorage.getItem('sitelen') || false
+      function getStoredTPToggler(name) {
+        const value = localStorage.getItem('tp-toggler-' + name) || "false";
+        return value === "true";
       }
 
-      function setStoredSitelen(sitelen) {
-        if (sitelen) {
-          localStorage.setItem('sitelen', true);
-        }
-        else {
-          localStorage.removeItem('sitelen');
-        }
+      function setStoredTPToggler(name, value) {
+        localStorage.setItem('tp-toggler-' + name, value);
       }
 
-      function setDocumentSitelen(sitelen) {
-        if (sitelen) {
-          document.documentElement.setAttribute('sitelen-pona', true);
-        }
-        else {
-          document.documentElement.removeAttribute('sitelen-pona');
+      function getStoredTPTogglers() {
+        return {
+          sitelen: getStoredTPToggler('sitelen'),
+          ligatures: getStoredTPToggler('ligatures'),
+          ligatures_extra: getStoredTPToggler('ligatures-extra'),
         }
       }
 
-      setDocumentSitelen(getStoredSitelen());
+      function convertTPTogglersToTPScript(tp_togglers) {
+        if (!tp_togglers.sitelen) {
+          return "latin";
+        }
+
+        if (!tp_togglers.ligatures) {
+          return "sitelen";
+        }
+
+        if (!tp_togglers.ligatures_extra) {
+          return "sitelen-ligatures-simple";
+        }
+
+        return "sitelen-ligatures-complex";
+      }
+
+      function getStoredTPScript() {
+        return convertTPTogglersToTPScript(getStoredTPTogglers());
+      }
+
+      function setDocumentTPScript(tp_script) {
+        document.documentElement.setAttribute('tp-script', tp_script);
+      }
+
+      setDocumentTPScript(getStoredTPScript());
     </script>
 
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
@@ -50,8 +69,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="/toki-musi-pi-sona-pona/">
-      <span class="navbar-icon sitelen-pona">toki+pona</span>
-      <span class="navbar-text sitelen-pona-able">toki musi pi sona pona</span>
+      <span class="navbar-icon sitelen-pona">toki & pona</span>
+      <span class="navbar-text sitelen-pona-able"><span class="sitelen-processed">toki musi pi <span class="sitelen-glyph-start">(</span>sona <span class="sitelen-joiner">&</span> pona<span class="sitelen-glyph-end">)</span></span></span>
     </a>
     
   </div>
@@ -59,48 +78,86 @@
 
     
     <div class="container">
-      <div class="form-check form-switch form-check-reverse float-end">
-  <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
-  <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+      <div class="float-end">
+
+  o luka e wile sina:
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenLigaturesToggler">sitelen linja</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesToggler">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelenLigaturesExtraToggler">sitelen linja mute</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesExtraToggler">
+  </div>
+
+  <script>
+    function initializeTogglers(tp_togglers) {
+      const checkboxes = {
+        sitelen: document.getElementById("sitelenToggler"),
+        ligatures: document.getElementById("sitelenLigaturesToggler"),
+        ligatures_extra: document.getElementById("sitelenLigaturesExtraToggler"),
+      }
+
+      checkboxes.sitelen.checked = tp_togglers.sitelen;
+      checkboxes.ligatures.checked = tp_togglers.ligatures;
+      checkboxes.ligatures_extra.checked = tp_togglers.ligatures_extra;
+
+      checkboxes.ligatures.disabled = false;
+      checkboxes.ligatures_extra.disabled = false;
+
+      if (!tp_togglers.sitelen) {
+        checkboxes.ligatures.disabled = true;
+        checkboxes.ligatures_extra.disabled = true;
+      }
+
+      if (!tp_togglers.ligatures) {
+        checkboxes.ligatures_extra.disabled = true;
+      }
+    }
+
+    initializeTogglers(getStoredTPTogglers());
+  </script>
+
 </div>
-<script>
-  const checkbox = document.getElementById("sitelenToggler");
-  checkbox.checked = getStoredSitelen();
-</script>
 
 
       
 
 <div class="sitelen-pona-able">
 
-<h1>jan lili li kalama e soweli ike pi lon ala</h1>
+<h1><span class="sitelen-processed">jan <span class="sitelen-joiner">&</span> lili li kalama e soweli <span class="sitelen-joiner">&</span> ike pi <span class="sitelen-glyph-start">(</span>lon ala<span class="sitelen-glyph-end">)</span></span></h1>
 
 <article class="fable">
-<p>jan lili li lon.</p>
 
-<p>jan lili li wile musi.
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
-kulupu li kute li tawa wawa.
-soweli ike li lon ala.
-jan lili li musi wawa.</p>
+<span class="sitelen-processed">
+<p>jan <span class="sitelen-joiner">&</span> lili li wile musi.
+jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
+kulupu jan li kute li tawa wawa.
+soweli <span class="sitelen-joiner">&</span> ike li lon ala.
+jan <span class="sitelen-joiner">&</span> lili li musi wawa.</p>
 
-<p>jan lili li wile musi.
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
-kulupu li kute li tawa wawa.
-soweli ike li lon ala.
-jan lili li musi wawa.</p>
+<p>jan <span class="sitelen-joiner">&</span> lili li wile musi.
+jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
+kulupu jan li kute li tawa wawa.
+soweli <span class="sitelen-joiner">&</span> ike li lon ala.
+jan <span class="sitelen-joiner">&</span> lili li musi wawa.</p>
 
-<p>soweli ike li lon.
-jan lili li kalama wawa e ni: “soweli ike li lon! soweli ike li lon!”
-kulupu li kute taso li tawa ala.
-soweli ike li moku e jan lili.</p>
+<p>soweli <span class="sitelen-joiner">&</span> ike li lon.
+jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
+kulupu jan li kute taso li tawa ala.
+soweli <span class="sitelen-joiner">&</span> ike li moku e jan <span class="sitelen-joiner">&</span> lili.</p>
 
+</span>
 
-<h2>sona pona li lon</h2>
+<h2><span class="sitelen-processed">sona <span class="sitelen-joiner"><span class="sitelen-joiner"><span class="sitelen-joiner"><span class="sitelen-joiner">&</span></span></span></span> pona li lon </span></h2>
 
 <ul>
 
-<li>jan li toki lon ala, la kulupu li kute ala.</li>
+<li><span class="sitelen-processed"><span class="sitelen-glyph-reverse-start">{</span>jan li toki lon <span class="sitelen-joiner">&</span> ala<span class="sitelen-glyph-reverse-end">}</span><span class="latin-comma">,</span> la kulupu li kute ala.</span></li>
 
 </ul>
 
