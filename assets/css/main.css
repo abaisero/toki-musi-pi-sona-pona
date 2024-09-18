@@ -74,4 +74,10 @@ html[tp-script=sitelen-ligatures-simple] .sitelen-joiner {
   display: none;
 }
 
+html[tp-script=sitelen-ligatures-complex] .sitelen-pi-joiner,
+html[tp-script=sitelen-ligatures-complex] .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-start,
+html[tp-script=sitelen-ligatures-complex] .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-end {
+  display: none;
+}
+
 /*# sourceMappingURL=main.css.map */
