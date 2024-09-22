@@ -1,0 +1,10 @@
+---
+layout: default
+---
+
+{% assign divclass = page.no-sitelen-pona | if: "", "sitelen-pona-able" %}
+%div{class: "{{ divclass }}"}
+  {% assign title = page.sitelen | default: page.title %}
+  %h1 {% sitelen variable: title %}
+
+  {{ content }}

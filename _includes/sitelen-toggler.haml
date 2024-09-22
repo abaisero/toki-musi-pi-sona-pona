@@ -1,0 +1,36 @@
+o luka e wile sina:
+.form-check.form-switch.form-check
+  %label.form-check-label{for: "indent"} o tawa e sitelen
+  %input.form-check-input{role: "switch", type: "checkbox", id: "indent"}
+.form-check.form-switch.form-check
+  %label.form-check-label{for: "sitelen-checkbox"} o kepeken e sitelen pona
+  %input.form-check-input{role: "switch", type: "checkbox", id: "sitelen-checkbox"}
+.form-check.form-switch.form-check
+  %label.form-check-label{for: "sitelen-linja-checkbox"} o suli e linja
+  %input.form-check-input{role: "switch", type: "checkbox", id: "sitelen-linja-checkbox"}
+.form-check.form-switch.form-check
+  %label.form-check-label{for: "sitelen-kulupu-checkbox"} o kulupu e sitelen
+  %input.form-check-input{role: "switch", type: "checkbox", id: "sitelen-kulupu-checkbox"}
+
+:javascript
+  const checkboxes = {
+    indent: document.getElementById("indent"),
+    sitelen: document.getElementById("sitelen-checkbox"),
+    sitelen_linja: document.getElementById("sitelen-linja-checkbox"),
+    sitelen_kulupu: document.getElementById("sitelen-kulupu-checkbox"),
+  };
+
+  function updateCheckboxes(tp_bools) {
+    checkboxes.sitelen_linja.disabled = !tp_bools.sitelen;
+    checkboxes.sitelen_kulupu.disabled = !tp_bools.sitelen;
+  };
+
+  function initializeCheckboxes(tp_bools) {
+    checkboxes.indent.checked = tp_bools.indent;
+    checkboxes.sitelen.checked = tp_bools.sitelen;
+    checkboxes.sitelen_linja.checked = tp_bools.sitelen_linja;
+    checkboxes.sitelen_kulupu.checked = tp_bools.sitelen_kulupu;
+    updateCheckboxes(tp_bools);
+  };
+
+  initializeCheckboxes(getStoredTPBools());

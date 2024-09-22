@@ -1,0 +1,14 @@
+---
+layout: page
+---
+
+%article.fable
+  {{ content }}
+
+  %h2 {% sitelen sona & pona li lon %}
+
+  %ul
+    {% for wisdom in page.sona_pona %}
+    %li {% sitelen variable: wisdom %}
+    {% endfor %}
+

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+%h1 {{ page.title }}
+
+This page is a development-only page, useful to test new features.
+It is should only be published in the development environment.
+
+%hr
+
+{% assign divclass = page.no-sitelen-pona | if: "", "sitelen-pona-able" %}
+%div{class: "{{ divclass }}"}
+  {{ content }}
