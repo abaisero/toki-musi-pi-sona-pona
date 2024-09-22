@@ -4,35 +4,40 @@
   document.addEventListener("DOMContentLoaded", function() {
 
     const checkboxes = {
-      sitelen: document.getElementById("sitelenToggler"),
-      ligatures: document.getElementById("sitelenLigaturesToggler"),
-      ligatures_extra: document.getElementById("sitelenLigaturesExtraToggler"),
+      indent: document.getElementById("indent"),
+      sitelen: document.getElementById("sitelen-checkbox"),
+      sitelen_linja: document.getElementById("sitelen-linja-checkbox"),
+      sitelen_kulupu: document.getElementById("sitelen-kulupu-checkbox"),
     }
 
-    function getTPTogglers() {
+    function getTPCheckboxesBools() {
       return {
+        indent: checkboxes.indent.checked,
         sitelen: checkboxes.sitelen.checked,
-        ligatures: checkboxes.ligatures.checked,
-        ligatures_extra: checkboxes.ligatures_extra.checked,
+        sitelen_linja: checkboxes.sitelen_linja.checked,
+        sitelen_kulupu: checkboxes.sitelen_kulupu.checked,
       }
     }
 
+    checkboxes.indent.addEventListener("change", function() {
+      setStoredTPBool('indent', checkboxes.indent.checked);
+      setDocumentTPAttribute('indent', checkboxes.indent.checked);
+    });
+
     checkboxes.sitelen.addEventListener("change", function() {
-      setStoredTPToggler('sitelen', checkboxes.sitelen.checked);
-      initializeTogglers(getStoredTPTogglers());
-      setDocumentTPScript(convertTPTogglersToTPScript(getTPTogglers()));
+      setStoredTPBool('sitelen', checkboxes.sitelen.checked);
+      setDocumentTPAttribute('sitelen', checkboxes.sitelen.checked);
+      updateCheckboxes(getTPCheckboxesBools());
     });
 
-    checkboxes.ligatures.addEventListener("change", function() {
-      setStoredTPToggler('ligatures', checkboxes.ligatures.checked);
-      initializeTogglers(getStoredTPTogglers());
-      setDocumentTPScript(convertTPTogglersToTPScript(getTPTogglers()));
+    checkboxes.sitelen_linja.addEventListener("change", function() {
+      setStoredTPBool('sitelen-linja', checkboxes.sitelen_linja.checked);
+      setDocumentTPAttribute('sitelen-linja', checkboxes.sitelen_linja.checked);
     });
 
-    checkboxes.ligatures_extra.addEventListener("change", function() {
-      setStoredTPToggler('ligatures-extra', checkboxes.ligatures_extra.checked);
-      initializeTogglers(getStoredTPTogglers());
-      setDocumentTPScript(convertTPTogglersToTPScript(getTPTogglers()));
+    checkboxes.sitelen_kulupu.addEventListener("change", function() {
+      setStoredTPBool('sitelen-kulupu', checkboxes.sitelen_kulupu.checked);
+      setDocumentTPAttribute('sitelen-kulupu', checkboxes.sitelen_kulupu.checked);
     });
 
   });

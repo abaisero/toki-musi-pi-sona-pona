@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="mi kama sona e toki pona, la toki musi li pona, la mi sitelen e toki musi." />
     <meta name="author" content="jan Pasi" />
-    <title>jan & lili li kalama e soweli & ike pi (lon & ala) - toki musi pi sona pona</title>
+    <title>jan  lili li kalama e soweli  ike pi lon ala - toki musi pi sona pona</title>
 
     <!-- Favicon-->
     <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
@@ -17,48 +17,43 @@
 
     <!-- avoids flashing issue when preferred theme is different from the default theme -->
     <script>
-      function getStoredTPToggler(name) {
-        const value = localStorage.getItem('tp-toggler-' + name) || "false";
+      function getStoredTPBool(name) {
+        const value = localStorage.getItem('tp-' + name) || "false";
         return value === "true";
       }
 
-      function setStoredTPToggler(name, value) {
-        localStorage.setItem('tp-toggler-' + name, value);
+      function setStoredTPBool(name, value) {
+        localStorage.setItem('tp-' + name, value);
       }
 
-      function getStoredTPTogglers() {
+      function getStoredTPBools() {
         return {
-          sitelen: getStoredTPToggler('sitelen'),
-          ligatures: getStoredTPToggler('ligatures'),
-          ligatures_extra: getStoredTPToggler('ligatures-extra'),
+          indent: getStoredTPBool('indent'),
+          sitelen: getStoredTPBool('sitelen'),
+          sitelen_linja: getStoredTPBool('sitelen-linja'),
+          sitelen_kulupu: getStoredTPBool('sitelen-kulupu'),
         }
       }
 
-      function convertTPTogglersToTPScript(tp_togglers) {
-        if (!tp_togglers.sitelen) {
-          return "latin";
-        }
+      function setDocumentTPAttribute(name, value) {
+        scoped_name = 'tp-' + name;
 
-        if (!tp_togglers.ligatures) {
-          return "sitelen";
+        if (value) {
+          document.documentElement.setAttribute(scoped_name, scoped_name);
         }
-
-        if (!tp_togglers.ligatures_extra) {
-          return "sitelen-ligatures-simple";
+        else {
+          document.documentElement.removeAttribute(scoped_name);
         }
-
-        return "sitelen-ligatures-complex";
       }
 
-      function getStoredTPScript() {
-        return convertTPTogglersToTPScript(getStoredTPTogglers());
+      function setDocumentTPAttributes(tp_bools) {
+        setDocumentTPAttribute('indent', tp_bools.indent);
+        setDocumentTPAttribute('sitelen', tp_bools.sitelen);
+        setDocumentTPAttribute('sitelen-linja', tp_bools.sitelen_linja);
+        setDocumentTPAttribute('sitelen-kulupu', tp_bools.sitelen_kulupu);
       }
 
-      function setDocumentTPScript(tp_script) {
-        document.documentElement.setAttribute('tp-script', tp_script);
-      }
-
-      setDocumentTPScript(getStoredTPScript());
+      setDocumentTPAttributes(getStoredTPBools());
     </script>
 
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
@@ -69,10 +64,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" href="/toki-musi-pi-sona-pona/">
-      <span class="navbar-icon sitelen-pona">toki & pona</span>
-      <span class="navbar-text sitelen-pona-able">toki musi <span class="sitelen-pi-joiner">pi</span> <span class="sitelen-glyph">
-                <span class="sitelen-glyph-start">(</span>sona <span class="sitelen-joiner">&</span> pona<span class="sitelen-glyph-end">)</span>
-              </span></span>
+      <span class="navbar-icon sitelen-pona"> toki & pona </span>
+      <span class="navbar-text"> toki musi pi sona pona </span>
     </a>
     
   </div>
@@ -80,48 +73,49 @@
 
     
     <div class="container">
-      <div class="float-end">
+      <main>
+      <div class="float-end" style="position: sticky; top: 10ch;">
 
   o luka e wile sina:
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+    <label class="form-check-label" for="indent">o tawa e sitelen</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="indent">
   </div>
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenLigaturesToggler">sitelen pona linja</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesToggler">
+    <label class="form-check-label" for="sitelen-checkbox">o sitelen pi toki pona</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-checkbox">
   </div>
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenLigaturesExtraToggler">sitelen pona lili</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesExtraToggler">
+    <label class="form-check-label" for="sitelen-linja-checkbox">o suli e linja</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-linja-checkbox">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelen-kulupu-checkbox">o kulupu e sitelen</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-kulupu-checkbox">
   </div>
 
   <script>
-    function initializeTogglers(tp_togglers) {
-      const checkboxes = {
-        sitelen: document.getElementById("sitelenToggler"),
-        ligatures: document.getElementById("sitelenLigaturesToggler"),
-        ligatures_extra: document.getElementById("sitelenLigaturesExtraToggler"),
-      }
-
-      checkboxes.sitelen.checked = tp_togglers.sitelen;
-      checkboxes.ligatures.checked = tp_togglers.ligatures;
-      checkboxes.ligatures_extra.checked = tp_togglers.ligatures_extra;
-
-      checkboxes.ligatures.disabled = false;
-      checkboxes.ligatures_extra.disabled = false;
-
-      if (!tp_togglers.sitelen) {
-        checkboxes.ligatures.disabled = true;
-        checkboxes.ligatures_extra.disabled = true;
-      }
-
-      if (!tp_togglers.ligatures) {
-        checkboxes.ligatures_extra.disabled = true;
-      }
+    const checkboxes = {
+      indent: document.getElementById("indent"),
+      sitelen: document.getElementById("sitelen-checkbox"),
+      sitelen_linja: document.getElementById("sitelen-linja-checkbox"),
+      sitelen_kulupu: document.getElementById("sitelen-kulupu-checkbox"),
     }
 
-    initializeTogglers(getStoredTPTogglers());
+    function updateCheckboxes(tp_bools) {
+      checkboxes.sitelen_linja.disabled = !tp_bools.sitelen
+      checkboxes.sitelen_kulupu.disabled = !tp_bools.sitelen
+    }
+
+    function initializeCheckboxes(tp_bools) {
+      checkboxes.indent.checked = tp_bools.indent;
+      checkboxes.sitelen.checked = tp_bools.sitelen;
+      checkboxes.sitelen_linja.checked = tp_bools.sitelen_linja;
+      checkboxes.sitelen_kulupu.checked = tp_bools.sitelen_kulupu;
+      updateCheckboxes(tp_bools);
+    }
+
+    initializeCheckboxes(getStoredTPBools());
   </script>
 
 </div>
@@ -131,39 +125,37 @@
 
 <div class="sitelen-pona-able">
 
-<h1>jan <span class="sitelen-joiner">&</span> lili li kalama e soweli <span class="sitelen-joiner">&</span> ike <span class="sitelen-pi-joiner">pi</span> <span class="sitelen-glyph">
-                <span class="sitelen-glyph-start">(</span>lon <span class="sitelen-joiner">&</span> ala<span class="sitelen-glyph-end">)</span>
-              </span></h1>
+
+<h1>jan <span class='sitelen-joiner'>& </span>lili li kalama e soweli <span class='sitelen-joiner'>& </span>ike pi <span class='sitelen-glyph'>lon ala</span></h1>
 
 <article class="fable">
 
 
-<p>jan <span class="sitelen-joiner">&</span> lili li wile musi.
-jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
-kulupu jan li kute li tawa wawa.
-soweli <span class="sitelen-joiner">&</span> ike li lon <span class="sitelen-joiner">&</span> ala.
-jan <span class="sitelen-joiner">&</span> lili li musi wawa.</p>
+<p>jan <span class="sitelen-joiner">&amp; </span>lili li lon<span class="latin-comma">, </span><br /><span class="indent">jan <span class="sitelen-joiner">&amp; </span>lili </span>li wile musi<span class="latin-period">.</span></p>
 
-<p>jan <span class="sitelen-joiner">&</span> lili li wile musi.
-jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
-kulupu jan li kute li tawa wawa.
-soweli <span class="sitelen-joiner">&</span> ike li lon <span class="sitelen-joiner">&</span> ala.
-jan <span class="sitelen-joiner">&</span> lili li musi wawa.</p>
+<p>jan <span class="sitelen-joiner">&amp; </span>lili li kalama wawa e ni: &#8220;soweli <span class="sitelen-joiner">&amp; </span>ike li lon! soweli <span class="sitelen-joiner">&amp; </span>ike li lon!&#8221;
+kulupu li kute<span class="latin-comma">, </span><br /><span class="indent">kulupu </span>li kama wawa<span class="latin-period">.</span>
+soweli <span class="sitelen-joiner">&amp; </span>ike li lon ala<span class="latin-period">.</span>
+jan <span class="sitelen-joiner">&amp; </span>lili li musi wawa<span class="latin-period">.</span></p>
 
-<p>soweli <span class="sitelen-joiner">&</span> ike li lon.
-jan <span class="sitelen-joiner">&</span> lili li kalama wawa e ni: “soweli <span class="sitelen-joiner">&</span> ike li lon! soweli <span class="sitelen-joiner">&</span> ike li lon!”
-kulupu jan li kute taso li tawa ala.
-soweli <span class="sitelen-joiner">&</span> ike li moku e jan <span class="sitelen-joiner">&</span> lili.</p>
+<p>jan <span class="sitelen-joiner">&amp; </span>lili li kalama wawa e ni: &#8220;soweli <span class="sitelen-joiner">&amp; </span>ike li lon! soweli <span class="sitelen-joiner">&amp; </span>ike li lon!&#8221;
+kulupu li kute<span class="latin-comma">, </span><br /><span class="indent">kulupu </span>li kama wawa<span class="latin-period">.</span>
+soweli <span class="sitelen-joiner">&amp; </span>ike li lon ala<span class="latin-period">.</span>
+jan <span class="sitelen-joiner">&amp; </span>lili li musi wawa<span class="latin-period">.</span></p>
+
+<p>soweli <span class="sitelen-joiner">&amp; </span>ike li lon<span class="latin-period">.</span>
+jan <span class="sitelen-joiner">&amp; </span>lili li kalama wawa e ni: &#8220;soweli <span class="sitelen-joiner">&amp; </span>ike li lon! soweli <span class="sitelen-joiner">&amp; </span>ike li lon!&#8221;
+kulupu li kute<span class="latin-comma">, </span>taso ona li kama ala<span class="latin-period">.</span>
+soweli <span class="sitelen-joiner">&amp; </span>ike li moku e jan <span class="sitelen-joiner">&amp; </span>lili<span class="latin-period">.</span></p>
 
 
-
-<h2>sona <span class="sitelen-joiner"><span class="sitelen-joiner"><span class="sitelen-joiner"><span class="sitelen-joiner">&</span></span></span></span> pona li lon </h2>
+<h2>
+  sona <span class='sitelen-joiner'>& </span>pona li lon
+</h2>
 
 <ul>
 
-<li><span class="sitelen-glyph-reverse">
-                <span class="sitelen-glyph-reverse-start">{</span>jan li toki lon <span class="sitelen-joiner">&</span> ala<span class="sitelen-glyph-reverse-end">}</span>
-              </span><span class="latin-comma">,</span> la kulupu li kute ala.</li>
+  <li><span class='sitelen-glyph-reverse'>jan li toki lon ala</span><span class='latin-comma'>, </span>la kulupu li kute ala<span class='latin-period'>.</span></li>
 
 </ul>
 
@@ -172,16 +164,15 @@ soweli <span class="sitelen-joiner">&</span> ike li moku e jan <span class="site
 
 </div>
 
-
-      <footer class="fixed-bottom">
-        <div class="container">
-          <small>
-            Copyright <i class="far fa-copyright fa-sm"></i>
-            2024 jan Pasi
-          </small>
-        </div>
-      </footer>
+      <main>
     </div>
+
+    <footer class="container fixed-bottom">
+      <small>
+        Copyright <i class="far fa-copyright fa-sm"></i>
+        2024 jan Pasi
+      </small>
+    </footer>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
