@@ -10,11 +10,8 @@ layout: default
 
 <div class="{{ divclass }}">
 
-<h1>
-  {%-sitelenblock-%}
-  {{ page.title }}
-  {%-endsitelenblock-%}
-</h1>
+{% assign title = page.sitelen | default: page.title %}
+<h1>{% sitelen variable: title %}</h1>
 
 {{ content }}
 

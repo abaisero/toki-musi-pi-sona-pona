@@ -2,13 +2,14 @@
   font-family: nansi-nanpa;
 }
 
-html[tp-script|="sitelen"] {
-  .sitelen-pona-able {
+html[tp-sitelen] main {
+  & .sitelen-pona-able {
     font-family: nansi-nanpa;
+    font-size: 150%;
 
-    %headings {
-      font-family: nansi-nanpa;
-    }
+    & %headings {
+        font-family: nansi-nanpa;
+      }
   }
 }
 
@@ -29,49 +30,45 @@ html[tp-script|="sitelen"] {
 
 /* sitelen ligatures */
 
-html[tp-script]:not([tp-script="latin"]) {
+html[tp-sitelen] {
+  .latin-period,
   .latin-comma,
-  .latin-qmark,
-  .latin-quote {
+  .latin-qmark {
     display: none;
   }
 
-  h1, a, u {
+  & h1, a, u {
     text-decoration: none;
+    /* text-decoration: overline underline; */
+    /* text-decoration-style: double; */
+    /* text-decoration-style: wavy; */
+    /* text-decoration-style: dotted; */
   }
 }
 
-html[tp-script="latin"] {
-  .sitelen-joiner,
-  .sitelen-glyph-reverse-start,
-  .sitelen-glyph-reverse-end,
-  .sitelen-glyph-start,
-  .sitelen-glyph-end {
-    display: none;
+html[tp-sitelen][tp-sitelen-linja] {
+  .sitelen-glyph {
+    &::before {
+      content: "(";
+    }
+    &::after {
+      content: ")";
+    }
+  }
+
+  .sitelen-glyph-reverse {
+    &::before {
+      content: "{";
+    }
+    &::after {
+      content: "}";
+    }
   }
 }
 
-html[tp-script="sitelen"] {
-  .sitelen-joiner,
-  .sitelen-glyph-reverse-start,
-  .sitelen-glyph-reverse-end,
-  .sitelen-glyph-start,
-  .sitelen-glyph-end {
-    display: none;
-  }
-}
-
-html[tp-script="sitelen-ligatures-simple"] {
+html:not([tp-sitelen]),
+html:not([tp-sitelen-kulupu]) {
   .sitelen-joiner {
-    display: none;
-  }
-}
-
-html[tp-script="sitelen-ligatures-complex"] {
-  .sitelen-pi-joiner,
-  .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-start,
-  .sitelen-pi-joiner + .sitelen-glyph > .sitelen-glyph-end
-  {
     display: none;
   }
 }

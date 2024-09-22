@@ -1,45 +1,45 @@
-<div class="float-end">
+<div class="float-end" style="position: sticky; top: 10ch;">
 
   o luka e wile sina:
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenToggler">sitelen pona</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenToggler">
+    <label class="form-check-label" for="indent">o tawa e sitelen</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="indent">
   </div>
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenLigaturesToggler">sitelen pona linja</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesToggler">
+    <label class="form-check-label" for="sitelen-checkbox">o sitelen pi toki pona</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-checkbox">
   </div>
   <div class="form-check form-switch form-check">
-    <label class="form-check-label" for="sitelenLigaturesExtraToggler">sitelen pona lili</label>
-    <input class="form-check-input" type="checkbox" role="switch" id="sitelenLigaturesExtraToggler">
+    <label class="form-check-label" for="sitelen-linja-checkbox">o suli e linja</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-linja-checkbox">
+  </div>
+  <div class="form-check form-switch form-check">
+    <label class="form-check-label" for="sitelen-kulupu-checkbox">o kulupu e sitelen</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="sitelen-kulupu-checkbox">
   </div>
 
   <script>
-    function initializeTogglers(tp_togglers) {
-      const checkboxes = {
-        sitelen: document.getElementById("sitelenToggler"),
-        ligatures: document.getElementById("sitelenLigaturesToggler"),
-        ligatures_extra: document.getElementById("sitelenLigaturesExtraToggler"),
-      }
-
-      checkboxes.sitelen.checked = tp_togglers.sitelen;
-      checkboxes.ligatures.checked = tp_togglers.ligatures;
-      checkboxes.ligatures_extra.checked = tp_togglers.ligatures_extra;
-
-      checkboxes.ligatures.disabled = false;
-      checkboxes.ligatures_extra.disabled = false;
-
-      if (!tp_togglers.sitelen) {
-        checkboxes.ligatures.disabled = true;
-        checkboxes.ligatures_extra.disabled = true;
-      }
-
-      if (!tp_togglers.ligatures) {
-        checkboxes.ligatures_extra.disabled = true;
-      }
+    const checkboxes = {
+      indent: document.getElementById("indent"),
+      sitelen: document.getElementById("sitelen-checkbox"),
+      sitelen_linja: document.getElementById("sitelen-linja-checkbox"),
+      sitelen_kulupu: document.getElementById("sitelen-kulupu-checkbox"),
     }
 
-    initializeTogglers(getStoredTPTogglers());
+    function updateCheckboxes(tp_bools) {
+      checkboxes.sitelen_linja.disabled = !tp_bools.sitelen
+      checkboxes.sitelen_kulupu.disabled = !tp_bools.sitelen
+    }
+
+    function initializeCheckboxes(tp_bools) {
+      checkboxes.indent.checked = tp_bools.indent;
+      checkboxes.sitelen.checked = tp_bools.sitelen;
+      checkboxes.sitelen_linja.checked = tp_bools.sitelen_linja;
+      checkboxes.sitelen_kulupu.checked = tp_bools.sitelen_kulupu;
+      updateCheckboxes(tp_bools);
+    }
+
+    initializeCheckboxes(getStoredTPBools());
   </script>
 
 </div>

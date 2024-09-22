@@ -1,0 +1,20 @@
+.fable p,
+.sitelen-pona-able p {
+  white-space: pre-line;
+}
+
+html:not([tp-indent]) {
+  .indent {
+    display: none;
+  }
+
+  br {
+    display: none;
+  }
+}
+
+html[tp-indent] {
+  .indent {
+    visibility: hidden;
+  }
+}

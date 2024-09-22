@@ -17,48 +17,43 @@
 
     <!-- avoids flashing issue when preferred theme is different from the default theme -->
     <script>
-      function getStoredTPToggler(name) {
-        const value = localStorage.getItem('tp-toggler-' + name) || "false";
+      function getStoredTPBool(name) {
+        const value = localStorage.getItem('tp-' + name) || "false";
         return value === "true";
       }
 
-      function setStoredTPToggler(name, value) {
-        localStorage.setItem('tp-toggler-' + name, value);
+      function setStoredTPBool(name, value) {
+        localStorage.setItem('tp-' + name, value);
       }
 
-      function getStoredTPTogglers() {
+      function getStoredTPBools() {
         return {
-          sitelen: getStoredTPToggler('sitelen'),
-          ligatures: getStoredTPToggler('ligatures'),
-          ligatures_extra: getStoredTPToggler('ligatures-extra'),
+          indent: getStoredTPBool('indent'),
+          sitelen: getStoredTPBool('sitelen'),
+          sitelen_linja: getStoredTPBool('sitelen-linja'),
+          sitelen_kulupu: getStoredTPBool('sitelen-kulupu'),
         }
       }
 
-      function convertTPTogglersToTPScript(tp_togglers) {
-        if (!tp_togglers.sitelen) {
-          return "latin";
-        }
+      function setDocumentTPAttribute(name, value) {
+        scoped_name = 'tp-' + name;
 
-        if (!tp_togglers.ligatures) {
-          return "sitelen";
+        if (value) {
+          document.documentElement.setAttribute(scoped_name, scoped_name);
         }
-
-        if (!tp_togglers.ligatures_extra) {
-          return "sitelen-ligatures-simple";
+        else {
+          document.documentElement.removeAttribute(scoped_name);
         }
-
-        return "sitelen-ligatures-complex";
       }
 
-      function getStoredTPScript() {
-        return convertTPTogglersToTPScript(getStoredTPTogglers());
+      function setDocumentTPAttributes(tp_bools) {
+        setDocumentTPAttribute('indent', tp_bools.indent);
+        setDocumentTPAttribute('sitelen', tp_bools.sitelen);
+        setDocumentTPAttribute('sitelen-linja', tp_bools.sitelen_linja);
+        setDocumentTPAttribute('sitelen-kulupu', tp_bools.sitelen_kulupu);
       }
 
-      function setDocumentTPScript(tp_script) {
-        document.documentElement.setAttribute('tp-script', tp_script);
-      }
-
-      setDocumentTPScript(getStoredTPScript());
+      setDocumentTPAttributes(getStoredTPBools());
     </script>
 
     <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
@@ -68,19 +63,19 @@
     {% include navigation.html %}
     
     <div class="container">
+      <main>
       {% include sitelen-toggler.html %}
 
       {{ content }}
-
-      <footer class="fixed-bottom">
-        <div class="container">
-          <small>
-            Copyright <i class="far fa-copyright fa-sm"></i>
-            2024 {{ site.author }}
-          </small>
-        </div>
-      </footer>
+      <main>
     </div>
+
+    <footer class="container fixed-bottom">
+      <small>
+        Copyright <i class="far fa-copyright fa-sm"></i>
+        2024 {{ site.author }}
+      </small>
+    </footer>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

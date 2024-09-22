@@ -12,6 +12,7 @@ defaults:
       type: fables
     values:
       layout: fable
+      excerpt: "No excerpt is available, to block an annoying warning."
 
 collections:
   fables:
