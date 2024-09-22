@@ -22,11 +22,11 @@ h1 {
   font-family: nansi-nanpa;
 }
 
-html[tp-sitelen] main .sitelen-pona-able {
+html[data-tp-sitelen] main .sitelen-pona-able {
   font-family: nansi-nanpa;
   font-size: 150%;
 }
-html[tp-sitelen] main .sitelen-pona-able h1, html[tp-sitelen] main .sitelen-pona-able h2, html[tp-sitelen] main .sitelen-pona-able h3, html[tp-sitelen] main .sitelen-pona-able h4, html[tp-sitelen] main .sitelen-pona-able h5, html[tp-sitelen] main .sitelen-pona-able h6 {
+html[data-tp-sitelen] main .sitelen-pona-able h1, html[data-tp-sitelen] main .sitelen-pona-able h2, html[data-tp-sitelen] main .sitelen-pona-able h3, html[data-tp-sitelen] main .sitelen-pona-able h4, html[data-tp-sitelen] main .sitelen-pona-able h5, html[data-tp-sitelen] main .sitelen-pona-able h6 {
   font-family: nansi-nanpa;
 }
 
@@ -46,34 +46,30 @@ html[tp-sitelen] main .sitelen-pona-able h1, html[tp-sitelen] main .sitelen-pona
 }
 
 /* sitelen ligatures */
-html[tp-sitelen] .latin-period,
-html[tp-sitelen] .latin-comma,
-html[tp-sitelen] .latin-qmark {
+html[data-tp-sitelen] .latin-period,
+html[data-tp-sitelen] .latin-comma,
+html[data-tp-sitelen] .latin-qmark {
   display: none;
 }
-html[tp-sitelen] h1, html[tp-sitelen] a, html[tp-sitelen] u {
+html[data-tp-sitelen] h1, html[data-tp-sitelen] a, html[data-tp-sitelen] u {
   text-decoration: none;
-  /* text-decoration: overline underline; */
-  /* text-decoration-style: double; */
-  /* text-decoration-style: wavy; */
-  /* text-decoration-style: dotted; */
 }
 
-html[tp-sitelen][tp-sitelen-linja] .sitelen-glyph::before {
+html[data-tp-sitelen][data-tp-sitelen-linja] .sitelen-glyph::before {
   content: "(";
 }
-html[tp-sitelen][tp-sitelen-linja] .sitelen-glyph::after {
+html[data-tp-sitelen][data-tp-sitelen-linja] .sitelen-glyph::after {
   content: ")";
 }
-html[tp-sitelen][tp-sitelen-linja] .sitelen-glyph-reverse::before {
+html[data-tp-sitelen][data-tp-sitelen-linja] .sitelen-glyph-reverse::before {
   content: "{";
 }
-html[tp-sitelen][tp-sitelen-linja] .sitelen-glyph-reverse::after {
+html[data-tp-sitelen][data-tp-sitelen-linja] .sitelen-glyph-reverse::after {
   content: "}";
 }
 
-html:not([tp-sitelen]) .sitelen-joiner,
-html:not([tp-sitelen-kulupu]) .sitelen-joiner {
+html:not([data-tp-sitelen]) .sitelen-joiner,
+html:not([data-tp-sitelen-kulupu]) .sitelen-joiner {
   display: none;
 }
 
@@ -82,14 +78,14 @@ html:not([tp-sitelen-kulupu]) .sitelen-joiner {
   white-space: pre-line;
 }
 
-html:not([tp-indent]) .indent {
+html:not([data-tp-indent]) .indent {
   display: none;
 }
-html:not([tp-indent]) br {
+html:not([data-tp-indent]) br {
   display: none;
 }
 
-html[tp-indent] .indent {
+html[data-tp-indent] .indent {
   visibility: hidden;
 }
 
