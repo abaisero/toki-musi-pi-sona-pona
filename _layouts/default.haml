@@ -18,13 +18,17 @@
 
     -# avoids flashing issue when preferred theme is different from the default theme
     :javascript
+      function dataAttribute(name) {
+        return 'data-tp-' + name;
+      };
+
       function getStoredTPBool(name) {
-        const value = localStorage.getItem('tp-' + name) || "false";
+        const value = localStorage.getItem(dataAttribute(name)) || "false";
         return value === "true";
       }
 
       function setStoredTPBool(name, value) {
-        localStorage.setItem('tp-' + name, value);
+        localStorage.setItem(dataAttribute(name), value);
       }
 
       function getStoredTPBools() {
@@ -37,13 +41,13 @@
       }
 
       function setDocumentTPAttribute(name, value) {
-        scoped_name = 'tp-' + name;
+        const data_attribute_name = dataAttribute(name);
         
         if (value) {
-          document.documentElement.setAttribute(scoped_name, scoped_name);
+          document.documentElement.setAttribute(data_attribute_name, data_attribute_name);
         }
         else {
-          document.documentElement.removeAttribute(scoped_name);
+          document.documentElement.removeAttribute(data_attribute_name);
         }
       }
 

@@ -2,7 +2,7 @@
   font-family: nansi-nanpa;
 }
 
-html[tp-sitelen] main {
+html[data-tp-sitelen] main {
   & .sitelen-pona-able {
     font-family: nansi-nanpa;
     font-size: 150%;
@@ -30,7 +30,7 @@ html[tp-sitelen] main {
 
 /* sitelen ligatures */
 
-html[tp-sitelen] {
+html[data-tp-sitelen] {
   .latin-period,
   .latin-comma,
   .latin-qmark {
@@ -46,7 +46,7 @@ html[tp-sitelen] {
   }
 }
 
-html[tp-sitelen][tp-sitelen-linja] {
+html[data-tp-sitelen][data-tp-sitelen-linja] {
   .sitelen-glyph {
     &::before {
       content: "(";
@@ -66,8 +66,8 @@ html[tp-sitelen][tp-sitelen-linja] {
   }
 }
 
-html:not([tp-sitelen]),
-html:not([tp-sitelen-kulupu]) {
+html:not([data-tp-sitelen]),
+html:not([data-tp-sitelen-kulupu]) {
   .sitelen-joiner {
     display: none;
   }

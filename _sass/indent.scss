@@ -3,7 +3,7 @@
   white-space: pre-line;
 }
 
-html:not([tp-indent]) {
+html:not([data-tp-indent]) {
   .indent {
     display: none;
   }
@@ -13,7 +13,7 @@ html:not([tp-indent]) {
   }
 }
 
-html[tp-indent] {
+html[data-tp-indent] {
   .indent {
     visibility: hidden;
   }
